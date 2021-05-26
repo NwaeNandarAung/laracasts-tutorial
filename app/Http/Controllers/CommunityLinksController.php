@@ -28,7 +28,10 @@ class CommunityLinksController extends Controller
         CommunityLink::from(Auth::user())
                         ->contribute($request->all());
 
-        // flash('Thanks', 'This contribution will be approved shortly');
-        return back();
+        if(auth()->user()->isTrusted()) {
+            return back()->with('success','Thanks for the contribution');
+        } else {
+            return back()->with('warning','Thanks, this contribution will be approved shortly');
+        }
     }
 }
