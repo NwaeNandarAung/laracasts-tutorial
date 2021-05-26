@@ -13,6 +13,7 @@
                         <div class="col-span-2">
                             <p class="text-xl font-bold">Community Link</p class=>
                             <ul class="Links"></ul>
+                            @if(count($links))
                                 @foreach($links as $link)
                                     <li class="links__link">
                                         <span class="label label-defaultinline-flex items-center justify-center text-xs font-bold text-white px-1 leading-none rounded" style="background : {{$link->channel->color}}">{{$link->channel->title}}</span>
@@ -24,6 +25,11 @@
                                         </small>
                                     </li>
                                 @endforeach
+                            @else
+                                <li class="links__link">
+                                    No contribution yet!
+                                </li>
+                            @endif
                         </div>
                         @include('community.add-link')
                     </div>

@@ -18,12 +18,22 @@ class CommunityLink extends Model
         $link =new static;
         $link->user_id = $user->id;
 
+        if($user->isTrusted()) {
+            $link->approve();
+        }
         return $link;
     }
 
     public function contribute($attributes)
     {
         return $this->fill($attributes)->save();
+    }
+
+    public function approve()
+    {
+        $this->approved = true;
+
+        return $this;
     }
 
     public function creator()

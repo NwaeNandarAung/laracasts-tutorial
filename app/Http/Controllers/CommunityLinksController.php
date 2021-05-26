@@ -12,7 +12,7 @@ class CommunityLinksController extends Controller
 {
     public function index()
     {
-        $links = CommunityLink::paginate(25);
+        $links = CommunityLink::where('approved',1)->paginate(25);
         $channels = Channel::orderBy('title')->get();
 
         return view('community.index', compact('links','channels'));
@@ -27,6 +27,8 @@ class CommunityLinksController extends Controller
         ]);
         CommunityLink::from(Auth::user())
                         ->contribute($request->all());
+
+        // flash('Thanks', 'This contribution will be approved shortly');
         return back();
     }
 }
