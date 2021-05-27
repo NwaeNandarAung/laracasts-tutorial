@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityLinksController;
+use App\Http\Controllers\VotesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,5 @@ require __DIR__.'/auth.php';
 Route::get('/community', [CommunityLinksController::class, 'index']);
 Route::post('/community', [CommunityLinksController::class, 'store']);
 Route::get('/community/{channel}', [CommunityLinksController::class, 'index']);
+
+Route::post('/votes/{link}', [VotesController::class, 'store']);
