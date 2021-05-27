@@ -1,10 +1,10 @@
 <ul class="px-0">
     @if(count($links))
         @foreach($links as $link)
-            <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>
+            <li class="community_link border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>
                 <form method="POST" action="/votes/{{$link->id}}">
                     @csrf
-                    <button class="font-bold py-2 px-4 rounded-full {{ Auth::check() && Auth::user()->votedFor($link) ? 'bg-blue-500 hover:bg-blue-700 text-white' : 'bg-gray-500 hover:bg-gray-700 text-white'}}">
+                    <button class="font-bold py-1 mx-2 px-3 rounded {{ Auth::check() && Auth::user()->votedFor($link) ? 'bg-blue-500 hover:bg-blue-700 text-white' : 'bg-gray-500 hover:bg-gray-700 text-white'}}">
                         {{$link->votes->count()}}
                     </button>
                 </form>
@@ -25,4 +25,4 @@
     @endif
 </ul>
 
-{{ $links->links() }}
+{{ $links->appends(request()->query())->links() }}

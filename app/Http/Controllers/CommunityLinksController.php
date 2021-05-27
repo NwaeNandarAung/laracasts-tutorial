@@ -9,15 +9,13 @@ use App\Models\Channel;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Exceptions\CommunityLinkAlreadySubmitted;
+use App\Queries\CommunityLinksQuery;
 
 class CommunityLinksController extends Controller
 {
     public function index(Channel $channel = null)
     {
-        $links = CommunityLink::with('votes')->forChannel($channel)
-                ->where('approved',1)
-                ->latest('updated_at')
-                ->paginate(3);
+        $links = (new CommunityLinksQuery)->get(request()->exists('popular'), $channel);
 
         $channels = Channel::orderBy('title')->get();
 
