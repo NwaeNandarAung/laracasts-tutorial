@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CommunityLink;
+use App\Models\CommunityLinkVote;
 use App\Models\Channel;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -14,7 +15,7 @@ class CommunityLinksController extends Controller
     public function index(Channel $channel = null)
     {
         
-        $links = CommunityLink::forChannel($channel)
+        $links = CommunityLink::with('votes')->forChannel($channel)
                 ->where('approved',1)
                 ->latest('updated_at')
                 ->paginate(3);

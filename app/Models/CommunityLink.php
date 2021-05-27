@@ -61,6 +61,11 @@ class CommunityLink extends Model
         return $this->belongsTo(Channel::class);
     }
 
+    public function votes()
+    {
+        return $this->hasMany(CommunityLinkVote::class, 'community_link_id');
+    }
+
     protected function hasBeenAlreadySubmitted($link)
     {
         return static::where('link',$link)->first();
