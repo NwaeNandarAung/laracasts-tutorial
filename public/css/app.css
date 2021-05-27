@@ -32088,6 +32088,11 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+.community_link {
+  display:-webkit-box;
+  margin-right: 1em;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
