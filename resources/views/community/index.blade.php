@@ -13,10 +13,10 @@
                     <div class="grid grid-cols-3 gap-4">
                         <div class="col-span-2">
                             <p class="text-xl font-bold">Community Link</p>
-                            <ul class="Links"></ul>
+                            <ul class="px-0"></ul>
                             @if(count($links))
                                 @foreach($links as $link)
-                                    <li class="links__link">
+                                    <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>
                                         <span class="label label-defaultinline-flex items-center justify-center text-xs font-bold text-white px-1 leading-none rounded" style="background : {{$link->channel->color}}">{{$link->channel->title}}</span>
                                         <a href="{{$link->link}}" target="_blank" class="text-purple-600">
                                             {{$link->title}}
