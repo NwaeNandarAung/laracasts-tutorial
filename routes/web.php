@@ -25,3 +25,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/community', [CommunityLinksController::class, 'index']);
 Route::post('/community', [CommunityLinksController::class, 'store']);
+Route::get('/community/{channel}', [CommunityLinksController::class, 'index']);

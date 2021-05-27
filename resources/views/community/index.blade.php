@@ -12,25 +12,13 @@
                     @include('flash-message')
                     <div class="grid grid-cols-3 gap-4">
                         <div class="col-span-2">
-                            <p class="text-xl font-bold">Community Link</p>
-                            <ul class="px-0"></ul>
-                            @if(count($links))
-                                @foreach($links as $link)
-                                    <li class="border list-none rounded-sm px-3 py-3" style='border-bottom-width:0'>
-                                        <span class="label label-defaultinline-flex items-center justify-center text-xs font-bold text-white px-1 leading-none rounded" style="background : {{$link->channel->color}}">{{$link->channel->title}}</span>
-                                        <a href="{{$link->link}}" target="_blank" class="text-purple-600">
-                                            {{$link->title}}
-                                        </a>
-                                        <small>
-                                            Contributed by: <a href="#" class="font-bold">{{$link->creator->name}}</a>{{$link->updated_at->diffForHumans()}}
-                                        </small>
-                                    </li>
-                                @endforeach
-                            @else
-                                <li class="links__link">
-                                    No contribution yet!
-                                </li>
+                            <a href="/community" class="text-xl font-bold">Community Link</a>
+
+                            @if($channel != null)
+                                <span class="text-xl font-bold">&#8211; {{ $channel->title }}</span>
                             @endif
+
+                            @include('community.list')
                         </div>
                         @include('community.add-link')
                     </div>

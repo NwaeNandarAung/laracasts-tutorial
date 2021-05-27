@@ -35,6 +35,15 @@ class CommunityLink extends Model
         }
     }
 
+    public function scopeForChannel($builder, $channel)
+    {
+        if($channel) {
+            return $builder->where('channel_id', $channel->id);
+        }
+
+        return $builder;
+    }
+
     public function approve()
     {
         $this->approved = true;
